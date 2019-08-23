@@ -30,12 +30,20 @@ class Liga{
              
         void setNombre(string nombre){
             this->nombre.assign(nombre);
-        }//Set del nombre
+        }//Set del nombre de la liga
              
         string getNombre(){
             return this->nombre;
-        }//Get del nombre
+        }//Get del nombre de la liga
 		
+		void setPaes(string pais){
+            this->pais.assign(pais);
+        }//Set del pais donde se juega 
+             
+        string getPais(){
+            return this->pais;
+        }//Get del pais donde se juega
+        
 		void setEquipos(vector<Equipo*>equipos){
             this->equipos=equipos;
         }//Set del vetor de equipos
@@ -65,3 +73,4 @@ class Liga{
         ~Liga(){
 		}//Fin del destructor    
 };
+#endif
