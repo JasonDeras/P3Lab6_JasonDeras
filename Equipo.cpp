@@ -58,65 +58,101 @@ class Equipo{
             return this->fundacion;
         }//Get del año de fundacion del equipo
         
-		void setCarrera(string carrera){
-        	this->carrera.assign(carrera);
-        }//Get de la carrera
+		void setPartidosJugados(int p_j){
+        	this->p_j=p_j;
+        }//Set de los partidos jugados
              
-        string getCarrera(){
-            return this->carrera;
-        }//Get de la carrera
+        int getPartidosJugados(){
+            return this->p_j;
+        }//Get de los partidos jugados
 		
-		void setUsuario(string usuario){
-            this->usuario.assign(usuario);
-        }//Set del usuario
+		void setPartidosGanados(int p_j){
+            this->p_g=p_g;
+        }//Set de los partidos ganados
              
-        string getUsuario(){
-            return this->usuario;
-        }//Get del usuario
+        int getPartidosGanados(){
+            return this->p_g;
+        }//Get de los partidos gandados
 		          
-		void setPassword(string password){
-            this->password.assign(password);
-        }//Set de la password
+		void setPartidosEmpatados(int p_e){
+            this->p_e=p_e;
+        }//Set de los partidos empatados
              
-        string getPassword(){
-            return this->password;
-        }//Get de la password
+        int getPartidosEmpatados(){
+            return this->p_e;
+        }//Get de los partidos empatados
 				        
-		void setRol(string rol){
-            this->rol.assign(rol);
-        }//Set del rol
+		void setPartidosPerdidos(int p_p){
+            this->p_p=p_p;
+        }//Set de los partidos perdidos
              
-        string getRol(){
-            return this->rol;
-        }//Get del rol
+        int getPartidosPerdidos(){
+            return this->p_p;
+        }//Get de los partidos perdidos
+				        
+		void setGolesAfavor(int g_f){
+            this->g_f=g_f;
+        }//Set de los goles a favor
+             
+        int getGolesAfavor(){
+            return this->g_f;
+        }//Get de los goles a favor
+        		        
+		void setGolesEncontra(int g_e){
+            this->g_e=g_e;
+        }//Set de los goles en encontra
+             
+        int getGolesEncontra(){
+            return this->g_e;
+        }//Get de los goles en contra
+        		        
+		void setDiferenciaGoles(int d_f){
+            this->d_f=d_f;
+        }//Set de la diferencia de goles
+             
+        int getDiferenciaGoles(){
+            return this->d_f;
+        }//Get de la diferencia de goles
+        		        
+		void setPuntos(int puntos){
+            this->puntos=puntos;
+        }//Set de los puntos
+             
+        int getPuntos(){
+            return this->puntos;
+        }//Get de puntos
 		
-		void setCursadas(vector<Clase*>cursadas){
-            this->cursadas=cursadas;
+		void setJugadors(vector<Jugadores*>jugadores){
+            this->jugadores=jugadores;
         }//Set de las clases cursadas
              
-        void setClase(Clase*clase){
-            this->cursadas.push_back(clase);
-        }//Set de una sola clase a cursar
+        void setJugador(Jugador*jugador){
+            this->jugadores.push_back(jugador);
+        }//Set de un solo jugador
              
-        vector<Clase*> getCursadas(){
-            return this->cursadas;
-        }//Get del vector de las cursadas
+        vector<Jugador*> getCursadas(){
+            return this->jugadores;
+        }//Get del vector de los jugadores
         
-        void remClase(int p){
-        	cursadas.erase(cursadas.begin()+p);
-		}//Metodo que remueve una clase cursada		 
+        void remJugador(int p){
+        	jugadores.erase(jugadores.begin()+p);
+		}//Metodo que remueve un solo jugador	 
 		              
         void print(){
-        	cout<<"Cuenta: "<<cuenta<<
-        	" Nombre de la clase: "<<nombre<<
-        	" Carrera: "<<carrera<<
-        	" Usuario: "<<usuario<<
-        	" Password: "<<password<<
-			" Rol: "<<rol<<endl;
-			cout<<"Clase cursadas"<<endl;
-			for(int i=0;i<cursadas.size();i++){
-        		cursadas.at(i)->print();
-			}//Fin del for de las computadoras
+        	cout<<"Nombre del equipo: "<<nombre<<
+        	" Anio de Fundacion: "<<fundacion<<
+        	" Partidos Jugador: "<<p_j<<
+        	" Partidos ganados: "<<p_g<<
+        	" Partids Empatados: "<<p_e<<
+        	" Partidos Perdidos: "<<p_p<<
+        	" Goles a Favor: "<<g_f<<
+        	" Goles en contra: "<<g_c<<
+        	" Diferencia de goles: "<<d_g<<
+        	" Puntos: "<<puntos<<endl;
+        	cout<<"Jugadores"<<endl;
+        	for(int i=0;i<jugadores.size();i++){
+        		jugadores.at(i)->print();
+			}//Fin del for de impresion de los jugadores
 			cout<<"\n\n\n\n";
         }//Fin del metodo print 
         
