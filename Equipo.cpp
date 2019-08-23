@@ -2,7 +2,7 @@
 #include<string.h>
 #include<vector>
 #include<bits/stdc++.h>
-#inlcude "Jugador.cpp"
+#include "Jugador.cpp"
 #ifndef EQUIPO_CPP
 #define EQUIPO_CPP
 
@@ -98,20 +98,20 @@ class Equipo{
             return this->g_f;
         }//Get de los goles a favor
         		        
-		void setGolesEncontra(int g_e){
-            this->g_e=g_e;
+		void setGolesEncontra(int g_c){
+            this->g_c=g_c;
         }//Set de los goles en encontra
              
         int getGolesEncontra(){
-            return this->g_e;
+            return this->g_c;
         }//Get de los goles en contra
         		        
-		void setDiferenciaGoles(int d_f){
-            this->d_f=d_f;
+		void setDiferenciaGoles(int g_f){
+            this->g_f=g_f;
         }//Set de la diferencia de goles
              
         int getDiferenciaGoles(){
-            return this->d_f;
+            return this->g_f;
         }//Get de la diferencia de goles
         		        
 		void setPuntos(int puntos){
@@ -122,7 +122,7 @@ class Equipo{
             return this->puntos;
         }//Get de puntos
 		
-		void setJugadors(vector<Jugadores*>jugadores){
+		void setJugadors(vector<Jugador*>jugador){
             this->jugadores=jugadores;
         }//Set de las clases cursadas
              

@@ -48,8 +48,8 @@ class Liga{
             this->equipos=equipos;
         }//Set del vetor de equipos
              
-        void setEquipo(Equipo*clase){
-            this->equipos.push_back(Equipo);
+        void setEquipo(Equipo*equipo){
+            this->equipos.push_back(equipo);
         }//Set de una solo equipo
              
         vector<Equipo*> getEquipos(){
