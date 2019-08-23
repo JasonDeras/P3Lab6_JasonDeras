@@ -42,7 +42,7 @@ class Equipo{
 	   		puntos=0;//Puntos por partidos		              
         }//Fin del constructor sobrecargado
              
-        void serNombre(string nombre){
+        void setNombre(string nombre){
             this->nombre.assign(nombre);
         }//Set del nombre del equipo
              
