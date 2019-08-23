@@ -122,7 +122,7 @@ class Equipo{
             return this->puntos;
         }//Get de puntos
 		
-		void setJugadors(vector<Jugador*>jugador){
+		void setJugadores(vector<Jugador*>jugador){
             this->jugadores=jugadores;
         }//Set de las clases cursadas
              
@@ -130,7 +130,7 @@ class Equipo{
             this->jugadores.push_back(jugador);
         }//Set de un solo jugador
              
-        vector<Jugador*> getCursadas(){
+        vector<Jugador*> getJugadores(){
             return this->jugadores;
         }//Get del vector de los jugadores
         

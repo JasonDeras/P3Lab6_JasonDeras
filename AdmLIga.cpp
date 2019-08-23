@@ -36,7 +36,7 @@ class admLiga{
             }//Get del vector de las ligas 
 
 			void remLiga(int p){
-                Ligas.erase(ligas.begin()+p);
+                ligas.erase(ligas.begin()+p);
             }//Metodo que remueve una sola liga
 			 
 			int getN(){
@@ -47,64 +47,71 @@ class admLiga{
 			}//Destructor
             
             string token(string cadena, string divisor,int pos){
+            	
                if(cadena.size()>0){
-                 char oracion[cadena.size()]; 
-                 for (int i=0;i<=cadena.size();i++)
-                 {oracion[i]=cadena[i];}                    
-                 char *ptrtoken; 
-                 int num=1;
-                 const char* d=divisor.c_str();
-                 ptrtoken = strtok(oracion , d);             
-                 while(ptrtoken){
-                     if(num==pos){ 
-                        return ptrtoken;}                 
-                     ptrtoken = strtok(NULL, d);
-                     num++;}
+               	
+                 	char oracion[cadena.size()];
+					  
+                 	for (int i=0;i<=cadena.size();i++){
+					 	oracion[i]=cadena[i];
+					}//Fin del for
+					                    
+                 	char *ptrtoken; 
+                 	int num=1;
+                 	const char* d=divisor.c_str();
+                 	ptrtoken = strtok(oracion , d);
+					              
+                 	while(ptrtoken){
+                     	if(num==pos){ 
+                        	return ptrtoken;
+						}//Fin del if                 
+                     	ptrtoken = strtok(NULL, d);
+                     	num++;
+					}//Fin del while
                  return "";
                }else{return "";}
-            }
+            }//Fin del metodo token
             
         	void escribir(){
-          		ofstream Escribir;
-          		Escribir.open(ruta.c_str());  
-          		for(int i=0; i<personas.size();i++){
-                     Escribir<<personas.at(i)->getId()<<";"
-                             <<personas.at(i)->getNombre()<<";"
-                             <<personas.at(i)->getEdad()<<";"
-                             <<personas.at(i)->getGenero()<<endl;
-				}             
-          		Escribir.close(); 
-        	}
+				ofstream escri;
+				escri.open(ruta.c_str());
+				for(int i=0; i<ligas.size(); i++){//inicio for ligas
+					escri<<"$"<<ligas.at(i)->getNombre()<<":"<<ligas.at(i)->getPais()<<endl;
+					for(int j=0; j<ligas.at(i)->getEquipos().size(); j++){//inicio for de equipos de liga
+						escri<<ligas.at(i)->getEquipos()[j]->getNombre()<<":"
+						<<ligas.at(i)->getEquipos()[j]->getFundacion()<<"{";
+						for(int k=0; k<ligas.at(i)->getEquipos()[j]->getJugadores().size(); k++){//inicio for de jugadores de equipo
+							escri<<ligas.at(i)->getEquipos()[j]->getJugadores()[k]->getNombre()<<"|"
+							<<ligas.at(i)->getEquipos()[j]->getJugadores()[k]->getDorsal()<<"|"
+							<<ligas.at(i)->getEquipos()[j]->getJugadores()[k]->getPais()<<";";
+							}//fin for de jugadores de equipo
+							escri<<"}"<<endl;
+					}//fin for de equipos de liga
+				}//Fin del for que recorre las ligas
+				escri.close();
+        	}//Fin del metodo para escribir
             
         	void leer(){
-            	fstream Leer;
+            	fstream leer;
             	string linea;
-            	personas.clear();                 
+            	ligas.clear();                 
             	Leer.open(ruta.c_str()); 
            		if (Leer.is_open()){                 
                     while(! Leer.eof()){
-                             getline(Leer,linea); 
-                             if(linea.size()>0){//Atoi es de string a id o de cualquier otro numero  
-                                addPersona(new Persona(atoi(token(linea,";", 1).c_str()),
-                                                  token(linea,";", 2),
-                                                  atoi(token(linea,";", 3).c_str()),
-                                                  token(linea,";",4)
-                                                  )//Fin del atoi
+                            
                             );                        
                         }
                     }
                 }     
-                Leer.close();
-            }
+                leer.close();
+            }//Fin del metodo para leer el archivo
                          
             void print(){
-                  cout<<"Personas:"<<endl;
-                
-            for(int i=0; i<personas.size();i++){
-				    cout<<"\t"<<"-";				    	
-					personas.at(i)->print();				    
-				}
-            }             
+                  cout<<"Ligas"<<endl;
+                  for(int i=0;i<ligas.size();i++){
+				  }//Fin del for de impresion de las ligas
+				  cout<<"\n\n\n\n";
+            }//Fin del metodo print        
 };
 #endif
 
