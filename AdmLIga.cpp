@@ -93,16 +93,6 @@ class admLiga{
             
         	void leer(){
             	fstream leer;
-            	string linea;
-            	ligas.clear();                 
-            	Leer.open(ruta.c_str()); 
-           		if (Leer.is_open()){                 
-                    while(! Leer.eof()){
-                            
-                            );                        
-                        }
-                    }
-                }     
                 leer.close();
             }//Fin del metodo para leer el archivo
                          

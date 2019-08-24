@@ -6,6 +6,7 @@
 #include "Equipo.cpp"
 #include "Jugador.cpp"
 #include "Partido.cpp"
+#include "AdmLIga.cpp"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ int menujugadores();
 		int op;
 		int pos;
 		int pos1;
+		int pos2;
 		
 		//Vectores para controlar las ligas
 		vector<Liga*>ligas;
@@ -120,6 +122,7 @@ int menujugadores();
 							break;
 								
 							case 2:
+								
 								cout<<"Ingrese la posicion a eliminar: ";
 								cin>>pos;
 								if(pos>=0&&pos<equipos.size()){
@@ -131,7 +134,47 @@ int menujugadores();
 								}//Fin del if que valida si la posicion es valida
 								
 							break;
+							
+							case 3:
+								
+								cout<<"Ingrese la posicion de la liga de donde desa eliminar el equipo: ";
+								cin>>pos;
+								if(pos>=0&&pos<ligas.size()){
 									
+									cout<<"Ingrese la posicion del equipo que desea eliminar: ";
+									cin>>pos1;
+									
+									if(pos1>=0&&pos<ligas.at(pos)->getEquipos().size()){
+										ligas.at(pos)->remEquipo(pos1);
+										cout<<"Eliminado correctamente\n\n\n\n";
+									}else{
+										cout<<"Posicion del equipo no valida\n\n\n\n";
+									}//Fin del if que valida si la posicion de ese equipo existe
+								}else{
+									cout<<"Posicion de la liga no valida\n\n\n\n";
+								}//Fin del if del equipo 
+								
+							break;
+								
+							case 4:
+								
+								cout<<"Ligas activas"<<endl;
+								for(int i=0;i<ligas.size();i++){
+									ligas.at(i)->print();
+								}//Fin del for de impresion de las ligas
+								cout<<"\n\n\n\n";
+								cout<<"Ingrese la posicion de la liga: ";
+								cin>>pos;
+								if(pos>=0&&pos<ligas.size()){
+									
+									ligas.at(pos)->setEquipo(equipos.at(pos));
+									cout<<"Equipo agregado exitosamente\n\n\n\n";
+								}else{
+									cout<<"Posicion de liga no valida\n\n\n\n";
+								}//Fin del if que valida que la posicion de la liga que ingreso es valida
+								
+							break;
+							
 							default:
 								cout<<"Opcion no valida\n\n\n\n";
 							break;
@@ -162,6 +205,7 @@ int menujugadores();
 							break;
 								
 							case 2:
+								
 								cout<<"Ingrese la posicion del jugador a eliminar: ";
 								cin>>pos;
 								if(pos>=0&&pos<jugadores.size()){
@@ -174,6 +218,29 @@ int menujugadores();
 								
 							break;
 							
+							case 3:
+								
+								cout<<"Ingrese la posicion de la para ver los equipos: ";
+								cin>>pos;
+								if(pos>=0&&pos<ligas.size()){
+									cout<<"Equipos en esta liga"<<endl;
+									for(int i=0;i<ligas.at(pos)->getEquipos().size();i++){
+										ligas.at(pos)->getEquipos().at(i)->print();
+									}//Fin del for de impresion de los equipos
+									cout<<"\n\n\n\n";
+									cout<<"Ingrese la posicion del equipo al que se va a agregar el jugador: ";
+									cin>>pos1;
+									if(pos1>=0&&ligas.at(pos)->getEquipos().size()){
+										((Equipo*)ligas.at(pos)->getEquipos().at(pos1))->setJugador(jugadores.at(pos1));
+									}else {
+										cout<<"La posicion del equipo no es valida\n\n\n\n";
+									}//Fin del if que valida si la posicion del equipo es valida	
+								}else{
+									cout<<"Posicion de loga no valida\n\n\n\n";
+								}//Fin del if que valida que ingreso un liag correcto
+								
+							break;
+							
 							default:
 								cout<<"Opcion no valida\n\n\n\n";
 							break;
@@ -183,9 +250,44 @@ int menujugadores();
 					
 				break;
 				
+				case 4:
+					
+					cout<<"Ligas creadas"<<endl;
+					for(int i=0;i<ligas.size();i++){
+						ligas.at(i)->print();
+					}//Fin del for de impresion de las ligas
+					cout<<"\n\n\n\n";
+					cout<<"Ingrese la posicion de la liga: ";
+					cin>>pos;
+					if(pos>=0&&pos<ligas.size()){
+						cout<<"Equipos en esa liga"<<endl;
+						for(int i=0;i<ligas.at(pos)->getEquipos().size();i++){
+							ligas.at(pos)->getEquipos().at(i);
+						}//Fin del for que imprime los equipos de esa liga
+					}else{
+						cout<<"Posicion no valida\n\n\n\n";
+					}//Fin del if qur valida si la posicion de la liga es valida
+				break;
+				
 				case 8:
 					
 					system("cls");
+					
+					//Limpiando el vector de equipos
+					equipos.clear();
+					if(!equipos.empty()){
+						equipos.clear();
+					}
+					//Limpiando el vector de jugadores
+					jugadores.clear();
+					if(!jugadores.empty()){
+						jugadores.clear();
+					}
+					//Limpiando el vector de las ligas
+					ligas.clear();
+					if(!ligas.empty()){
+						ligas.clear();
+					}
 					exit(0);
 					
 				break;
@@ -210,7 +312,7 @@ int menujugadores();
 		int op;
 		cout<<"1. Agregar una nueva liga\n\n";
 		cout<<"2. Eliminar una liga\n\n";
-		cout<<"3. Agregar un equipo\n\n";
+		cout<<"3. Eliminar un equipo\n\n";
 		cout<<"Ingrese una opcion: ";
 		cin>>op;
 		return op;
@@ -220,6 +322,8 @@ int menujugadores();
 		int op;
 		cout<<"1. Agregar un equipo\n\n";
 		cout<<"2. Eliminar un equipo\n\n";
+		cout<<"3. Agregar equipo a la liga\n\n";
+		cout<<"4. Eliminar un jugador del equipo\n\n";
 		cout<<"Ingrese una opcion: ";
 		cin>>op;
 		return op;
