@@ -17,27 +17,34 @@ int menujugadores();
 	int main(){
 		
 		//Variable para controlar el archivo
+		
 		admLiga adm("./liga.txt");
 		
 		//Variables para el manejo de los menus
+		
 		int r=1;
 		int op;
 		int pos;
 		int pos1;
 		int pos2;
 		
+		//Variable de control del partido
+		
 		Partido*p;
 		
 		//Vectores para controlar las ligas
+		
 		vector<Liga*>ligas;
 		vector<Equipo*>equipos;
 		vector<Jugador*>jugadores;
 		
 		//Variables de control de ligas
+		
 		string nombre_l;//Nombre de la liga
 	   	string pais_l;//Pais donde se juega la linea
 	   
 	   	//Variables de control de equipos
+	   	
 	   	string nombre_e;//Nombre del equipo
 	   	string fundacion;//Año de la fundacion del equipo
 	   	int p_j;//Partidos jugados
@@ -50,10 +57,15 @@ int menujugadores();
 	   	int puntos;//Puntos de los quipos
 	   	
 	   	//Variables de control de jugadores
+	   	
 	   	string nombre_j;//Nombre del jugador
 	   	string dorsal;//Numero del jugador
 	   	string pais_j;//Pais de origen del jugador
-	   
+	   	
+	   	
+	   	//Variable de control de la tabla
+	   	vector<int>tabla;
+	   	
 		while(r==1){
 			
 			cout<<"Menu\n\n\n\n";
@@ -292,6 +304,8 @@ int menujugadores();
 				break;
 				
 				case 5:
+					adm.leer();
+            		adm.print();
 				break;
 					
 				case 6:
@@ -306,6 +320,39 @@ int menujugadores();
 					}else{
 						cout<<"Posicion de la liga no valida\n\n\n\n";
 					}//Fin del if que valida si la posicion sea valida	
+					
+				break;
+				
+				case 7:
+					cout<<"Ingrese la posicion de la liga que quiere ver: ";
+					cin>>pos;
+					
+					if(pos>=0&&pos<ligas.size()){
+						for(int i=0;i<ligas.at(pos)->getEquipos().size();i++){
+							tabla.push_back(ligas.at(pos)->getEquipos().at(i)->getPuntos());
+						}//For que llena la tabla con los puntos totales de cada equipo
+					
+					//Ordenando el vector de la tabla
+					sort(tabla.begin(),tabla.end());
+					
+					//Imprimiendo la tabla de posiciones
+					for(int i=0;i<tabla.size();i++){
+						if(tabla.at(i)==ligas.at(pos)->getEquipos().at(i)->getPuntos()){
+							cout<<"Posicion: "<<i+1
+							<<setw(10)<<ligas.at(pos)->getEquipos().at(i)->getNombre()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getPartidosJugados()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getPartidosGanados()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getPartidosEmpatados()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getPartidosPerdidos()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getGolesAfavor()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getGolesEncontra()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getDiferenciaGoles()
+							<<setw(15)<<ligas.at(pos)->getEquipos().at(i)->getPuntos()<<endl;
+						}//Fin del if que hace la impresion de la tabla
+					}//Fin del for de impresion de la tabla
+					}else{
+						cout<<"Posicion de la liga no valida\n\n\n\n";
+					}//Fin del if que valida que la posicion ingresada es valida
 					
 				break;
 				

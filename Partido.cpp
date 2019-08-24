@@ -72,7 +72,7 @@ class Partido{
 				blue->setDiferenciaGoles(blue->getGolesAfavor()-blue->getGolesEncontra());
 				
 				//Puntos para cada equipo
-				red->setPuntos(red->getPuntos()+2);
+				red->setPuntos(red->getPuntos()+3);
 				blue->setPuntos(blue->getPuntos()+0);
 				
 			}//If que valida si el equipo 1 gano
@@ -98,7 +98,7 @@ class Partido{
 				
 				//Puntos para cada equipo
 				red->setPuntos(red->getPuntos()+0);
-				blue->setPuntos(blue->getPuntos()+2);
+				blue->setPuntos(blue->getPuntos()+3);
 				
 			}//If que valida si el equipo 2 gano
 			
