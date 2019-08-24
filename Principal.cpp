@@ -23,6 +23,8 @@ int menujugadores();
 		int pos1;
 		int pos2;
 		
+		Partido*p;
+		
 		//Vectores para controlar las ligas
 		vector<Liga*>ligas;
 		vector<Equipo*>equipos;
@@ -264,6 +266,22 @@ int menujugadores();
 						for(int i=0;i<ligas.at(pos)->getEquipos().size();i++){
 							ligas.at(pos)->getEquipos().at(i);
 						}//Fin del for que imprime los equipos de esa liga
+						cout<<"\n\n\n\n";
+						cout<<"Ingrese la posicion del primer equipo: ";
+						cin>>pos1;
+						if(pos1>=0&&pos<ligas.at(pos)->getEquipos().size()){
+							cout<<"Ingrese la posicion del segundo equipo: ";
+							cin>>pos2;
+							if(pos2>=0&&pos2<ligas.at(pos)->getEquipos().size()){
+								cout<<"Ahora se jugara suerte a ambos equipos\n\n\n\n";
+								p=new Partido(ligas.at(pos)->getEquipos().at(pos1),ligas.at(pos)->getEquipos().at(pos2));
+								p->jugar();
+							}else{
+								cout<<"Posicion del segundo equipo no valida no se pudee jugar\n\n\n\n";
+							}//Fin del if que valida la posicion del segundo equipo
+						}else{
+							cout<<"Posicion del primer equipo no valida\n\n\n\n";
+						}//Fin del if que valida la posicion del equipo que ingreso
 					}else{
 						cout<<"Posicion no valida\n\n\n\n";
 					}//Fin del if qur valida si la posicion de la liga es valida
