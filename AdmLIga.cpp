@@ -93,6 +93,17 @@ class admLiga{
             
         	void leer(){
             	fstream leer;
+            	ligas.clear();
+				string linea;                 
+            	leer.open(ruta.c_str()); 
+           		if (leer.is_open()){                 
+                    while(! leer.eof()){
+                        getline(leer,linea); 
+                        if(linea.size()>0){//Atoi es de string a id o de cualquier otro numero  
+                                addLiga(new Liga(token(linea,":",1),token(linea,"",2)));                        
+                        }//Fin del if
+                    }//While que lee el archivo
+                }//If que valida que si el archivo tiene mas cosas aun     
                 leer.close();
             }//Fin del metodo para leer el archivo
                          

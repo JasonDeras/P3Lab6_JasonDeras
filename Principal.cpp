@@ -16,6 +16,9 @@ int menujugadores();
 
 	int main(){
 		
+		//Variable para controlar el archivo
+		admLiga adm("./liga.txt");
+		
 		//Variables para el manejo de los menus
 		int r=1;
 		int op;
@@ -285,6 +288,25 @@ int menujugadores();
 					}else{
 						cout<<"Posicion no valida\n\n\n\n";
 					}//Fin del if qur valida si la posicion de la liga es valida
+					
+				break;
+				
+				case 5:
+				break;
+					
+				case 6:
+					
+					adm.leer();
+					cout<<"Ingrese la posicion de la liga que desea agregar: ";
+					cin>>pos;
+					if(pos>=0&&pos<ligas.size()){
+						adm.addLiga(ligas.at(pos));
+						adm.escribir();
+						cout<<"Liga agregada al archivo correctamente\n\n\n\n";	
+					}else{
+						cout<<"Posicion de la liga no valida\n\n\n\n";
+					}//Fin del if que valida si la posicion sea valida	
+					
 				break;
 				
 				case 8:
